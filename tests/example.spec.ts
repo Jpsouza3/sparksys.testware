@@ -1,18 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "./baseTest";
+import { AuthService } from "../services/AuthService";
+import { JobService } from "../services/JobService";
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("deve realizar login e usar o cliente autenticado", async ({ apiClient }) => {
+  const authService = new AuthService(apiClient);
+  const jobService = new JobService(apiClient);
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  var response = await jobService.GetJob("b2a57058-1674-47d0-9a70-9cd3925296fe");
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  console.log(response);
 });
