@@ -15,21 +15,21 @@ export class JobService implements JobInterface {
 
     PostJob(jobModel: JobModel): Promise<JobResponse> {
         return this.httpClient.post(
-            `api/Job`,
+            `http://localhost:5035/api/Job`,
             jobModel
         )
     }
 
     PutJob(jobModel: JobModel, jobId: string): Promise<JobResponse> {
         return this.httpClient.put(
-            `api/Job${jobId}`,
+            `http://localhost:5035/api/Job/${jobId}`,
             jobModel
         )
     }
     
     Delete(jobId: string): Promise<JobResponse> {
         return this.httpClient.delete(
-            `api/Job${jobId}`
+            `http://localhost:5035/api/Job/${jobId}`
         )
     }
     

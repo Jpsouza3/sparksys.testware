@@ -85,12 +85,25 @@ export class PlaywrightHttpClient implements HttpClient {
   private async handleResponse<T>(
     response: APIResponse
   ): Promise<T> {
-    if (!response.ok()) {
-      throw new Error(
-        `HTTP Error: ${response.status()} - ${response.statusText()}`
-      );
+    try {
+      return await response.json();
+    } catch {
+      try {
+        const text = await response.text();
+        return {
+          success: false,
+          message: text || `HTTP Error: ${response.status()} - ${response.statusText()}`,
+          errors: [text || response.statusText()],
+          data: null,
+        } as unknown as T;
+      } catch (err) {
+        return {
+          success: false,
+          message: `HTTP Error: ${response.status()} - ${response.statusText()}`,
+          errors: [response.statusText() || String(err)],
+          data: null,
+        } as unknown as T;
+      }
     }
-
-    return response.json();
   }
 }

@@ -7,18 +7,40 @@ export type JobModel = {
 }
 
 export class JobModelBuilder {
-    private jobModel: JobModel = {title: "Jane Doe", clientName: "Jane Doe", description: "Lorem Ipsum", machineModel: "Daikin 3000", address: "912 Lourie Park, Salvatoremouth, UT 15326-1064"}
+    private jobModel: JobModel = {
+        title: "Default Title",
+        clientName: "Default Client",
+        description: "Default Description",
+        machineModel: "Default Machine",
+        address: "Default Address"
+    };
 
-    WithTitle(
-            title: string
-        )
-    {
-        this.jobModel.title = title
+    withTitle(title: string): this {
+        this.jobModel.title = title;
+        return this;
     }
-    WithClientName(clientName: string){this.jobModel.clientName = clientName}
-    WithDescription(description: string){this.jobModel.description = description}
-    WithMachineModel(machineModel: string){this.jobModel.machineModel = machineModel}
-    WithAddress(address: string){this.jobModel.address = address}
-    build() {return this.jobModel}
 
+    withClientName(clientName: string): this {
+        this.jobModel.clientName = clientName;
+        return this;
+    }
+
+    withDescription(description: string): this {
+        this.jobModel.description = description;
+        return this;
+    }
+
+    withMachineModel(machineModel: string): this {
+        this.jobModel.machineModel = machineModel;
+        return this;
+    }
+
+    withAddress(address: string): this {
+        this.jobModel.address = address;
+        return this;
+    }
+
+    build(): JobModel {
+        return { ...this.jobModel };
+    }
 }
