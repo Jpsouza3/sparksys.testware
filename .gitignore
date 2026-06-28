@@ -6,3 +6,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+
+.env
+.env.*
+!.env.example   # (opcional) mantém um modelo de exemplo

@@ -1,3 +1,4 @@
+import { config } from "../core/config/EnvironmentManager";
 import { HttpClient } from "../core/HttpClient";
 import { JobModel } from "../models/JobModel";
 import { JobInterface, JobResponse } from "./interfaces/JobInterface";
@@ -9,27 +10,27 @@ export class JobService implements JobInterface {
 
     GetJob(jobId: string): Promise<JobResponse> {
         return this.httpClient.get(
-            `http://localhost:5035/api/Job/${jobId}`
+            `${config.baseUrl}/api/Job/${jobId}`
         )
     }
 
     PostJob(jobModel: JobModel): Promise<JobResponse> {
         return this.httpClient.post(
-            `http://localhost:5035/api/Job`,
+            `${config.baseUrl}/api/Job`,
             jobModel
         )
     }
 
     PutJob(jobModel: JobModel, jobId: string): Promise<JobResponse> {
         return this.httpClient.put(
-            `http://localhost:5035/api/Job/${jobId}`,
+            `${config.baseUrl}/api/Job/${jobId}`,
             jobModel
         )
     }
     
     Delete(jobId: string): Promise<JobResponse> {
         return this.httpClient.delete(
-            `http://localhost:5035/api/Job/${jobId}`
+            `${config.baseUrl}/api/Job/${jobId}`
         )
     }
     

@@ -1,6 +1,7 @@
 import { test as base } from "@playwright/test";
 import { PlaywrightHttpClient } from "../core/PlaywrightHttpClient";
 import { AuthService } from "../services/AuthService";
+import { config } from "../core/config/EnvironmentManager";
 
 type MyFixtures = {
   apiClient: PlaywrightHttpClient;
@@ -12,8 +13,8 @@ export const test = base.extend<MyFixtures>({
     const authService = new AuthService(httpClient);
 
     const response = await authService.GetLogin({
-      email: "joao@example.com",
-      password: "@Teste1",
+      email: config.testUserEmail,
+      password: config.testUserPassword,
     });
 
     if (response.success && response.data) {

@@ -1,3 +1,4 @@
+import { config } from "../core/config/EnvironmentManager";
 import { HttpClient } from "../core/HttpClient";
 import { JobActivityModel } from "../models/JobActivityModel";
 import { JobActivityInterface, JobActivityResponse } from "./interfaces/JobActivityInterface";
@@ -7,13 +8,13 @@ export class JobActivityService implements JobActivityInterface {
 
   GetJob(jobActicityId: string): Promise<JobActivityResponse> {
     return this.httpClient.get(
-      `http://localhost:5035/api/JobActivity/${jobActicityId}`
+      `${config.baseUrl}/api/JobActivity/${jobActicityId}`
     );
   }
 
   PostJob(jobActivityModel: JobActivityModel): Promise<JobActivityResponse> {
     return this.httpClient.post(
-      `http://localhost:5035/api/JobActivity`,
+      `${config.baseUrl}/api/JobActivity`,
       jobActivityModel
     );
   }
@@ -23,14 +24,14 @@ export class JobActivityService implements JobActivityInterface {
     jobActicityId: string
   ): Promise<JobActivityResponse> {
     return this.httpClient.put(
-      `http://localhost:5035/api/JobActivity/${jobActicityId}`,
+      `${config.baseUrl}/api/JobActivity/${jobActicityId}`,
       jobActivityModel
     );
   }
 
   Delete(jobActicityId: string): Promise<JobActivityResponse> {
     return this.httpClient.delete(
-      `http://localhost:5035/api/JobActivity/${jobActicityId}`
+      `${config.baseUrl}/api/JobActivity/${jobActicityId}`
     );
   }
 }

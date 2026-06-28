@@ -4,6 +4,7 @@ import { JobModel, JobModelBuilder } from "../models/JobModel";
 import { ContractValidator } from "../core/ContractValidator";
 import { JobSchema } from "../schemas/JobSchema";
 import { ErrorSchema } from "../schemas/ErrorSchema";
+import { config } from "../core/config/EnvironmentManager";
 
 test("Success POST Job", async ({ apiClient }) => {
   const jobService = new JobService(apiClient);
